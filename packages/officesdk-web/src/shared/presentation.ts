@@ -1,14 +1,24 @@
 import type { EditorContent } from './editor';
 import type { EditorMenuFeatureButtonConfig, EditorMenuEntryConfig } from '../shared';
-import type { PresentationMenuOptions, PresentationToolbarOptions } from '@officesdk/editor-sdk-core/presentation';
-export type { PresentationMenuOptions } from '@officesdk/editor-sdk-core/presentation';
+import type { PresentationMenuOptions, PresentationToolbarOptions, PresentationExportType } from '@officesdk/editor-sdk-core/presentation';
+export type { PresentationMenuOptions, PresentationExportType } from '@officesdk/editor-sdk-core/presentation';
+
+
 /**
  * Presentation 远程调用的方法定义，
  * 作为契约，用于统一约束客户端和服务端的接口。
  * 这里只有类型定义，不包含任何实现。
  */
 export type PresentationMethods = {
+  
+  /**
+   * Interface to check if the SDK is ready
+   */
   ready: () => Promise<void>;
+  /**
+   * Interface to export file
+   */
+  export: (type: PresentationExportType) => Promise<void>
   /**
    * 获取选区接口
    */
@@ -35,6 +45,7 @@ export type PresentationMethods = {
  */
 export interface PresentationEditor {
   readonly ready: () => Promise<void>;
+  readonly export: (type: PresentationExportType) => Promise<void>;
   readonly selection: PresentationSelection;
   readonly zoom: PresentationZoom;
   readonly slides: PresentationSlides;

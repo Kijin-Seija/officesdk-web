@@ -5,6 +5,7 @@ import type {
   EditorContent,
   PresentationZoom,
   PresentationSlides,
+  PresentationExportType,
 } from '../../shared';
 import { createSelectionFacade } from './selection';
 import { createContentFacade } from '../editor/content';
@@ -12,6 +13,7 @@ import { createZoomFacade } from './zoom';
 import { createSlidesFacade } from './slides';
 
 export interface PresentationFacade {
+  readonly export: (type: PresentationExportType) => Promise<void>
   /**
    * 选区实例
    */
@@ -41,6 +43,9 @@ export function createPresentationFacade(client: Client<PresentationMethods>): P
   const slides = createSlidesFacade(methods);
 
   return {
+    export: async (type: PresentationExportType): Promise<void> => {
+      return client.methods.export(type)
+    },
     get selection() {
       return selection;
     },

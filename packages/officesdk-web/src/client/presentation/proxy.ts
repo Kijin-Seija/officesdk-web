@@ -1,5 +1,5 @@
 import type { RPCClientProxy } from '@officesdk/rpc';
-import type { PresentationMethods } from '../../shared';
+import type { PresentationMethods, PresentationExportType } from '../../shared';
 
 /**
  * 定义 Presentation 的 RPC 代理的客户端调用接口
@@ -12,6 +12,9 @@ export function createPresentationProxy(): RPCClientProxy<PresentationMethods> {
     return {
       ready: async () => {
         return invoke('ready', []);
+      },
+      export: async (type: PresentationExportType) => {
+        return invoke('export', [type]);
       },
       /**
        * 获取选区接口

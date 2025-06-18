@@ -3,6 +3,12 @@ export { EditorModeType, EditorStandardRole } from './shared';
 
 export type {
   CreateOptions,
+  OfficeDocumentSDK,
+  OfficeSpreadSheetSDK,
+  OfficePresentationSDK,
+  OfficePdfSDK,
+  OfficeDBTableSDK,
+  OfficeLiteDocSDK,
   OfficeSDK,
   DocumentFacade,
   DocumentSettings,

@@ -66,6 +66,7 @@ export type {
   PresentationMenuEntryConfig,
   PresentationMenuFeatureButtonConfig,
   PresentationMenuOptions,
+  PresentationExportType,
 } from './presentation';
 export type {
   SpreadsheetMethods,

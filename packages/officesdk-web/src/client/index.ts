@@ -11,6 +11,12 @@ export type {
   BaseCreateOptions,
   OfficeSDK,
   OfficeSDKMap,
+  OfficeDocumentSDK,
+  OfficeSpreadSheetSDK,
+  OfficePresentationSDK,
+  OfficePdfSDK,
+  OfficeDBTableSDK,
+  OfficeLiteDocSDK,
 } from './create';
 
 export type { createContentFacade } from './editor/content';

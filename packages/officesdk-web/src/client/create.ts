@@ -155,11 +155,48 @@ export interface OfficeSDK<T extends FileType> {
    */
   destroy(): void;
 }
-
 /**
- * 创建 Office SDK 实例
+ * document sdk
  */
-export function createSDK<T extends FileType>(options: CreateOptions): OfficeSDK<T> {
+export type OfficeDocumentSDK = OfficeSDK<FileType.Document>;
+/**
+ * presentation sdk
+ */
+export type OfficePresentationSDK = OfficeSDK<FileType.Presentation>;
+/**
+ * spreadsheet sdk
+ */
+export type OfficeSpreadSheetSDK = OfficeSDK<FileType.Spreadsheet>;
+/**
+ * pdf sdk
+ */
+export type OfficePdfSDK = OfficeSDK<FileType.Pdf>;
+/**
+ * dbtable sdk
+ */
+export type OfficeDBTableSDK = OfficeSDK<FileType.DBTable>;
+/**
+ * liteDoc sdk
+ */
+export type OfficeLiteDocSDK = OfficeSDK<FileType.LiteDoc>;
+
+export type UnifiedOfficeSDK =
+  | OfficeDocumentSDK
+  | OfficePresentationSDK
+  | OfficeSpreadSheetSDK
+  | OfficePdfSDK
+  | OfficeDBTableSDK
+  | OfficeLiteDocSDK;
+/**
+ * create Office SDK instance
+ */
+export function createSDK(options: DocumentCreateOptions): OfficeDocumentSDK;
+export function createSDK(options: SpreadsheetCreateOptions): OfficeSpreadSheetSDK;
+export function createSDK(options: PresentationCreateOptions): OfficePresentationSDK;
+export function createSDK(options: PdfCreateOptions): OfficePdfSDK;
+export function createSDK(options: DBTableCreateOptions): OfficeDBTableSDK;
+export function createSDK(options: LiteDocCreateOptions): OfficeLiteDocSDK;
+export function createSDK(options: CreateOptions): UnifiedOfficeSDK {
   const { fileType, settings, ...others } = options;
 
   assertFileType(fileType);
@@ -169,7 +206,7 @@ export function createSDK<T extends FileType>(options: CreateOptions): OfficeSDK
       fileType,
       settings,
       ...others,
-    }) as OfficeSDK<T>;
+    });
   }
 
   if (fileType === FileType.Spreadsheet) {
@@ -177,7 +214,7 @@ export function createSDK<T extends FileType>(options: CreateOptions): OfficeSDK
       fileType,
       settings: settings,
       ...others,
-    }) as OfficeSDK<T>;
+    });
   }
 
   if (fileType === FileType.Presentation) {
@@ -185,28 +222,28 @@ export function createSDK<T extends FileType>(options: CreateOptions): OfficeSDK
       fileType,
       settings: settings,
       ...others,
-    }) as OfficeSDK<T>;
+    });
   }
 
   if (fileType === FileType.Pdf) {
     return createPdfSDK({
       fileType,
       ...others,
-    }) as OfficeSDK<T>;
+    });
   }
 
   if (fileType === FileType.LiteDoc) {
     return createLiteDocSDK({
       fileType,
       ...others,
-    }) as OfficeSDK<T>;
+    });
   }
 
   if (fileType === FileType.DBTable) {
     return createDatabaseTableSDK({
       fileType,
       ...others,
-    }) as OfficeSDK<T>;
+    });
   }
 
   // Just for type check
@@ -243,7 +280,7 @@ function connectIframe(options: CreateOptions): { url: string; container: HTMLIF
   };
 }
 
-function createDocumentSDK(options: DocumentCreateOptions): OfficeSDK<FileType.Document> {
+function createDocumentSDK(options: DocumentCreateOptions): OfficeDocumentSDK {
   const { settings } = options;
 
   const initOptions = createDocumentOptions(settings);
@@ -272,7 +309,7 @@ function createDocumentSDK(options: DocumentCreateOptions): OfficeSDK<FileType.D
   };
 }
 
-function createSpreadsheetSDK(options: SpreadsheetCreateOptions): OfficeSDK<FileType.Spreadsheet> {
+function createSpreadsheetSDK(options: SpreadsheetCreateOptions): OfficeSpreadSheetSDK {
   const { settings } = options;
   const initOptions = createSpreadsheetOptions(settings);
 
@@ -298,7 +335,7 @@ function createSpreadsheetSDK(options: SpreadsheetCreateOptions): OfficeSDK<File
   };
 }
 
-function createPresentationSDK(options: PresentationCreateOptions): OfficeSDK<FileType.Presentation> {
+function createPresentationSDK(options: PresentationCreateOptions): OfficePresentationSDK {
   const { settings } = options;
   const initOptions = createPresentationOptions(settings);
 
@@ -325,7 +362,7 @@ function createPresentationSDK(options: PresentationCreateOptions): OfficeSDK<Fi
   };
 }
 
-function createLiteDocSDK(options: LiteDocCreateOptions): OfficeSDK<FileType.LiteDoc> {
+function createLiteDocSDK(options: LiteDocCreateOptions): OfficeLiteDocSDK {
   const { url, container } = connectIframe(options);
 
   return {
@@ -346,7 +383,7 @@ function createLiteDocSDK(options: LiteDocCreateOptions): OfficeSDK<FileType.Lit
   };
 }
 
-function createPdfSDK(options: PdfCreateOptions): OfficeSDK<FileType.Pdf> {
+function createPdfSDK(options: PdfCreateOptions): OfficePdfSDK {
   const { url, container } = connectIframe(options);
 
   return {
@@ -367,7 +404,7 @@ function createPdfSDK(options: PdfCreateOptions): OfficeSDK<FileType.Pdf> {
   };
 }
 
-function createDatabaseTableSDK(options: DBTableCreateOptions): OfficeSDK<FileType.DBTable> {
+function createDatabaseTableSDK(options: DBTableCreateOptions): OfficeDBTableSDK {
   const { url, container } = connectIframe(options);
 
   return {
