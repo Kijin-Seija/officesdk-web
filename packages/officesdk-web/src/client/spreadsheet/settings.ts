@@ -6,6 +6,8 @@ export interface SpreadsheetSettings {
    * menu settings
    */
   menu?: {
+    disabled?: boolean
+    hidden?: boolean
     custom?: SheetMenuOptions['custom'];
     features?: SheetMenuOptions['features']
   };
@@ -13,6 +15,8 @@ export interface SpreadsheetSettings {
    * Toolbar related settings
    */
   toolbar?: {
+    disabled?: boolean
+    hidden?: boolean
     features?: SheetToolbarOptions['features'];
   };
 }

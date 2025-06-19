@@ -288,6 +288,8 @@ export interface PresentationSDKOptions {
    * 自定义菜单
    */
   menu?: {
+    disabled?: boolean
+    hidden?: boolean
     custom?: PresentationMenuOptions['custom'];
     features?: PresentationMenuOptions['features']
   };
@@ -295,6 +297,8 @@ export interface PresentationSDKOptions {
    * 工具栏设置
    */
   toolbar?: {
+    disabled?: boolean
+    hidden?: boolean
     features?: PresentationToolbarOptions['features']
   }
 }

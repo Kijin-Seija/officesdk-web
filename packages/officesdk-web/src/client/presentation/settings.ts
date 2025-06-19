@@ -6,6 +6,8 @@ export interface PresentationSettings {
    * 自定义菜单
    */
   menu?: {
+    disabled?: boolean
+    hidden?: boolean
     custom?: PresentationMenuOptions['custom'];
     features?: PresentationMenuOptions['features']
   };
@@ -13,6 +15,8 @@ export interface PresentationSettings {
    * Toolbar related settings
    */
   toolbar?: {
+    disabled?: boolean
+    hidden?: boolean
     features?: PresentationToolbarOptions['features']
   }
 }
