@@ -1,5 +1,5 @@
 import type { PresentationSDKOptions } from '../../shared';
-import type { PresentationMenuOptions, PresentationToolbarOptions } from '@officesdk/editor-sdk-core/presentation'
+import type { PresentationMenuOptions, PresentationToolbarFeatureButtonConfig } from '@officesdk/editor-sdk-core/combine'
 
 export interface PresentationSettings {
   /**
@@ -17,7 +17,7 @@ export interface PresentationSettings {
   toolbar?: {
     disabled?: boolean
     hidden?: boolean
-    features?: PresentationToolbarOptions['features']
+    features?: PresentationToolbarFeatureButtonConfig
   }
 }
 

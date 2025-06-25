@@ -21,18 +21,15 @@ export type {
   DocumentTocContentItem,
   DocumentTocItem,
   DocumentZoom,
+  DocumentWindow,
   EditorContent,
   EditorContentRecord,
-  EditorMenuEntryConfig,
-  EditorMenuOptions,
   EditorMenuCustomButton,
   EditorContentMethods,
   EditorMenuEntryButton,
   EditorMenuFeatureButtonConfig,
   DocumentMenuFeatureButtonName,
   EditorMenuFeatureButton,
-  EditorOutline,
-  EditorOutlineItem,
   LiteDocEditor,
   LiteDocSDKOptions,
   DocumentMenuOptions,
@@ -57,10 +54,6 @@ export type {
   PresentationTextRange,
   PresentationTextRangeValue,
   PresentationZoom,
-  PresentationMenuFeatureButtonName,
-  PresentationMenuEntryConfig,
-  PresentationMenuFeatureButtonConfig,
-  PresentationMenuOptions,
   SpreadsheetCell,
   SpreadsheetCellValue,
   SpreadsheetEditor,
@@ -71,9 +64,7 @@ export type {
   SpreadsheetSelection,
   SpreadsheetWorkbook,
   SpreadsheetWorksheet,
-  SpreadsheetMenuFeatureButtonName,
   SpreadsheetMenuEntryConfig,
-  SpreadsheetMenuFeatureButtonConfig,
   SpreadsheetMenuOptions,
   DatabaseTableSelection,
   DatabaseTableSelectionType,
@@ -81,5 +72,7 @@ export type {
   DatabaseTableMethods,
   DatabaseTableSheet,
 } from '../shared';
+
+export { PresentationExportType } from '../shared';
 
 export { FileType } from '../shared';

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "declaration": false,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "target": "ES5",
+    "strict": true,
+    "removeComments": false,
+    "inlineSourceMap": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "importsNotUsedAsValues": "error",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "useUnknownInCatchVariables": true,
+    "noUnusedLocals": true,
+    "paths": {
+      "@officesdk/editor-sdk-core/*": [
+        "../../node_modules/@officesdk/editor-sdk-core/types/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

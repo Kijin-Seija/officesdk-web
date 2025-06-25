@@ -1,8 +1,11 @@
 import type { EditorContent } from './editor';
-import type { EditorMenuFeatureButtonConfig, EditorMenuEntryConfig } from '../shared';
-import type { PresentationMenuOptions, PresentationToolbarOptions, PresentationExportType } from '@officesdk/editor-sdk-core/presentation';
-export type { PresentationMenuOptions, PresentationExportType } from '@officesdk/editor-sdk-core/presentation';
+import type { PresentationMenuOptions, PresentationToolbarOptions } from '@officesdk/editor-sdk-core/combine';
 
+export enum PresentationExportType {
+  Pptx = 'pptx',
+  ImagePdf = 'imagePdf',
+  Image = 'image',
+}
 
 /**
  * Presentation 远程调用的方法定义，
@@ -10,7 +13,6 @@ export type { PresentationMenuOptions, PresentationExportType } from '@officesdk
  * 这里只有类型定义，不包含任何实现。
  */
 export type PresentationMethods = {
-  
   /**
    * Interface to check if the SDK is ready
    */
@@ -18,7 +20,7 @@ export type PresentationMethods = {
   /**
    * Interface to export file
    */
-  export: (type: PresentationExportType) => Promise<void>
+  export: (type: PresentationExportType) => Promise<void>;
   /**
    * 获取选区接口
    */
@@ -267,38 +269,22 @@ export interface PresentationSlides {
    */
   setSelectedSlides: (ids: string[]) => void;
 }
-
-/**
- * 幻灯片工具栏内置功能按钮
- */
-export type PresentationMenuFeatureButtonName = 'undo' | 'redo' | 'cut' | 'copy' | 'paste' | 'selectAll';
-
-/**
- * 幻灯片工具栏一级菜单
- */
-export type PresentationMenuEntryConfig = EditorMenuEntryConfig<PresentationMenuFeatureButtonName>;
-
-/**
- * 幻灯片工具栏功能按钮
- */
-export type PresentationMenuFeatureButtonConfig = EditorMenuFeatureButtonConfig<PresentationMenuFeatureButtonName>;
-
 export interface PresentationSDKOptions {
   /**
    * 自定义菜单
    */
   menu?: {
-    disabled?: boolean
-    hidden?: boolean
+    disabled?: boolean;
+    hidden?: boolean;
     custom?: PresentationMenuOptions['custom'];
-    features?: PresentationMenuOptions['features']
+    features?: PresentationMenuOptions['features'];
   };
   /**
    * 工具栏设置
    */
   toolbar?: {
-    disabled?: boolean
-    hidden?: boolean
-    features?: PresentationToolbarOptions['features']
-  }
+    disabled?: boolean;
+    hidden?: boolean;
+    features?: PresentationToolbarOptions['features'];
+  };
 }

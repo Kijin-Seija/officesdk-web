@@ -1,10 +1,19 @@
 import type { EditorContent } from './editor';
-import type { EditorMenuOptions, EditorMenuFeatureButtonConfig, EditorMenuEntryConfig } from '../shared';
+
 import type {
   SheetToolbarOptions,
-  SheetMenuFeatureButtonName,
   SheetMenuOptions,
-} from '@officesdk/editor-sdk-core/sheet';
+  SheetMenuEntryConfig,
+  SheetToolbarFeatureButtonName,
+  SheetMenuFeatureButtonName,
+} from '@officesdk/editor-sdk-core/combine';
+
+export type SpreadsheetMenuOptions = SheetMenuOptions
+export type SpreadsheetToolbarOptions = SheetToolbarOptions
+export type SpreadsheetMenuEntryConfig = SheetMenuEntryConfig
+export type SpreadsheetToolbarFeatureButtonName = SheetToolbarFeatureButtonName
+export type SpreadsheetMenuFeatureButtonName = SheetMenuFeatureButtonName
+
 /**
  * Spreadsheet 远程调用的方法定义，
  * 作为契约，用于统一约束客户端和服务端的接口。
@@ -349,21 +358,6 @@ export type SpreadsheetSelection = {
   setRange: (value: SpreadsheetRangeValue | null) => void;
 };
 
-/**
- * 幻灯片工具栏内置功能按钮
- */
-export type SpreadsheetMenuFeatureButtonName = SheetMenuFeatureButtonName;
-
-/**
- * 幻灯片工具栏一级菜单
- */
-export type SpreadsheetMenuEntryConfig = EditorMenuEntryConfig<SpreadsheetMenuFeatureButtonName>;
-
-/**
- * 幻灯片工具栏功能按钮
- */
-export type SpreadsheetMenuFeatureButtonConfig = EditorMenuFeatureButtonConfig<SpreadsheetMenuFeatureButtonName>;
-
 export interface SpreadsheetSDKOptions {
   // TODO:
   /**
@@ -372,17 +366,15 @@ export interface SpreadsheetSDKOptions {
   menu?: {
     disabled?: boolean;
     hidden?: boolean;
-    custom?: SheetMenuOptions['custom'];
-    features?: SheetMenuOptions['features'];
+    custom?: SpreadsheetMenuOptions['custom'];
+    features?: SpreadsheetMenuOptions['features'];
   };
   /**
    * Toolbar related settings
    */
   toolbar?: {
-    disabled?: boolean
-    hidden?: boolean
+    disabled?: boolean;
+    hidden?: boolean;
     features?: SheetToolbarOptions['features'];
   };
 }
-
-export type SpreadsheetMenuOptions = EditorMenuOptions<SpreadsheetMenuFeatureButtonName>;

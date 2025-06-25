@@ -1,6 +1,6 @@
 import type { SpreadsheetSDKOptions } from '../../shared';
-import type { SheetMenuOptions, SheetToolbarOptions } from '@officesdk/editor-sdk-core/sheet';
-
+import type { SheetMenuOptions as SpreadsheetMenuOptions, SheetToolbarOptions as SpreadsheetToolbarOptions} from '@officesdk/editor-sdk-core/combine';
+export type { SheetMenuOptions as SpreadsheetMenuOptions, SheetToolbarOptions as SpreadsheetToolbarOptions} from '@officesdk/editor-sdk-core/combine';
 export interface SpreadsheetSettings {
   /**
    * menu settings
@@ -8,8 +8,8 @@ export interface SpreadsheetSettings {
   menu?: {
     disabled?: boolean
     hidden?: boolean
-    custom?: SheetMenuOptions['custom'];
-    features?: SheetMenuOptions['features']
+    custom?: SpreadsheetMenuOptions['custom'];
+    features?: SpreadsheetMenuOptions['features']
   };
   /**
    * Toolbar related settings
@@ -17,7 +17,7 @@ export interface SpreadsheetSettings {
   toolbar?: {
     disabled?: boolean
     hidden?: boolean
-    features?: SheetToolbarOptions['features'];
+    features?: SpreadsheetToolbarOptions['features'];
   };
 }
 
