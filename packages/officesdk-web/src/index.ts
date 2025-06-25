@@ -87,6 +87,7 @@ export type {
   SpreadsheetMenuOptions,
   SpreadsheetToolbarFeatureButtonName,
   SpreadsheetMenuFeatureButtonName,
+  SpreadsheetExportType,
   DatabaseTableSelection,
   DatabaseTableSelectionType,
   DatabaseTableSelectionValue,

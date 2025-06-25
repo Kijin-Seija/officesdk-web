@@ -14,13 +14,22 @@ export type SpreadsheetMenuEntryConfig = SheetMenuEntryConfig
 export type SpreadsheetToolbarFeatureButtonName = SheetToolbarFeatureButtonName
 export type SpreadsheetMenuFeatureButtonName = SheetMenuFeatureButtonName
 
+export type SpreadsheetExportType = 'image' | 'pdf' | 'xlsx'
+
 /**
  * Spreadsheet 远程调用的方法定义，
  * 作为契约，用于统一约束客户端和服务端的接口。
  * 这里只有类型定义，不包含任何实现。
  */
 export type SpreadsheetMethods = {
+  /**
+   * Interface to check if the SDK is ready
+   */
   ready: () => Promise<void>;
+  /**
+   * Interface to export file
+   */
+  export: (type: SpreadsheetExportType) => Promise<void>
   /**
    * 获取工作簿接口
    */
@@ -51,6 +60,7 @@ export type SpreadsheetMethods = {
  * 电子表格编辑器实例接口
  */
 export interface SpreadsheetEditor {
+  readonly export: (type: SpreadsheetExportType) => Promise<void>
   readonly ready: () => Promise<void>;
   readonly workbook: SpreadsheetWorkbook;
   readonly activeSheet: SpreadsheetWorksheet;

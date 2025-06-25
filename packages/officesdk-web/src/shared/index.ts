@@ -77,7 +77,8 @@ export type {
   SpreadsheetMenuOptions,
   SpreadsheetToolbarOptions,
   SpreadsheetToolbarFeatureButtonName,
-  SpreadsheetMenuFeatureButtonName
+  SpreadsheetMenuFeatureButtonName,
+  SpreadsheetExportType
 } from './spreadsheet';
 export type {
   PdfMethods,

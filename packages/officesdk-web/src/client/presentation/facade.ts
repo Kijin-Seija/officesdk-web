@@ -13,6 +13,9 @@ import { createZoomFacade } from './zoom';
 import { createSlidesFacade } from './slides';
 
 export interface PresentationFacade {
+  /**
+   * export file
+   */
   readonly export: (type: PresentationExportType) => Promise<void>
   /**
    * 选区实例

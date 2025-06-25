@@ -66,11 +66,13 @@ export type {
   SpreadsheetWorksheet,
   SpreadsheetMenuEntryConfig,
   SpreadsheetMenuOptions,
+  SpreadsheetExportType,
   DatabaseTableSelection,
   DatabaseTableSelectionType,
   DatabaseTableSelectionValue,
   DatabaseTableMethods,
   DatabaseTableSheet,
+
 } from '../shared';
 
 export { PresentationExportType } from '../shared';
