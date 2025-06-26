@@ -59,5 +59,9 @@ export function createDBTableSelectionFacade(methods: RPCReturnMethods<DatabaseT
       const selection = await getDBTableSelection();
       return selection.selectMultipleColumns(column, columnCount);
     },
+    selectAll: async (): Promise<void> => {
+      const selection = await getDBTableSelection();
+      return selection.selectAll();
+    },
   };
 }
