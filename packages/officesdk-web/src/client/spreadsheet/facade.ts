@@ -5,11 +5,16 @@ import type {
   SpreadsheetCell,
   SpreadsheetSelection,
   SpreadsheetWorksheet,
+  SpreadsheetExportType
 } from '../../shared';
 import { createWorkbookFacade } from './workbook';
 import { createContentFacade } from '../editor/content';
 
 export interface SpreadsheetFacade {
+  /**
+   * export file
+   */
+  readonly export: (type: SpreadsheetExportType) => Promise<void>
   /**
    * 工作簿实例
    */
@@ -44,6 +49,9 @@ export function createSpreadsheetFacade(proxy: Client<SpreadsheetMethods>): Spre
   const content = createContentFacade(methods);
 
   return {
+    export: async (type: SpreadsheetExportType): Promise<void> => {
+      return proxy.methods.export(type)
+    },
     get workbook() {
       return workbook;
     },

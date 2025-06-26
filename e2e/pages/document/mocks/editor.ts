@@ -35,6 +35,9 @@ export function mockDocumentEditor(output: (message: string) => void): DocumentE
   };
 
   return {
+    async ready() {
+      return;
+    },
     selection: {
       getRange: () => {
         return createRange('mocked-start', 'mocked-end');
@@ -114,6 +117,31 @@ export function mockDocumentEditor(output: (message: string) => void): DocumentE
       goto: () => {
         output('document.outline.goto has been called');
         return Promise.resolve(true);
+      },
+    },
+    window: {
+      getScrollPosition: () => {
+        output(`document.window.getScrollPosition has been called`);
+        return { x: 0, y: 100 };
+      },
+      scrollTo: (params) => {
+        output(`document.window.scrollTo has been called with params: ${JSON.stringify(params)}`);
+      },
+      scrollToPage: (page: number) => {
+        output(`document.window.scrollTo has been called with page: ${page}`);
+      },
+      scrollIntoView: (range, options) => {
+        output(`document.window.scrollIntoView has been called with range: ${JSON.stringify(range)} and options: ${JSON.stringify(options)}`);
+      },
+      addScrollListener: (listener) => {
+        output('document.window.addScrollListener has been called');
+        setTimeout(() => {
+          listener({
+            x: 100,
+            y: 100,
+          });
+        });
+        return () => {};
       },
     },
   };

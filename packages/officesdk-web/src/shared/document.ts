@@ -1,14 +1,30 @@
 import type {
-  EditorMenuOptions,
-  EditorMenuFeatureButtonConfig,
-  EditorMenuEntryConfig,
-  DocumentWindow,
-} from '../shared';
-import type { EditorContent, EditorOutline, EditorOutlineItem } from './editor';
+  DocxMenuOptions,
+  DocxToolbarOptions,
+  DocxMenuEntryConfig,
+  DocxToolbarFeatureButtonName,
+  DocxMenuFeatureButtonName,
+  DocxWindowScrollParams,
+  DocxRangeValue,
+  DocxWindow,
+  DocxWindowScrollIntoViewOptions
+} from '@officesdk/editor-sdk-core/combine';
+import type { EditorContent } from './editor';
+import type {EditorOutline, EditorOutlineItem} from '@officesdk/editor-sdk-core/combine'
+
+export type DocumentMenuOptions = DocxMenuOptions
+export type DocumentToolbarOptions = DocxToolbarOptions
+export type DocumentMenuEntryConfig = DocxMenuEntryConfig
+export type DocumentToolbarFeatureButtonName = DocxToolbarFeatureButtonName
+export type DocumentMenuFeatureButtonName = DocxMenuFeatureButtonName
+export type DocumentWindowScrollParams = DocxWindowScrollParams
+export type DocumentRangeValue = DocxRangeValue
+export type DocumentWindow = DocxWindow
+export type DocumentWindowScrollIntoViewOptions = DocxWindowScrollIntoViewOptions
 
 /**
  * Document 远程调用的方法定义，
- * 作为契约，用于统一约束客户端和服务端的接口。
+* 作为契约，用于统一约束客户端和服务端的接口。
  * 这里只有类型定义，不包含任何实现。
  */
 
@@ -38,7 +54,7 @@ export type DocumentMethods = {
   /**
    *  传统文档目录大纲接口
    */
-  getOutline: () => DocumentOutline;
+  getOutline: () => Omit<DocumentOutline, 'setVisible'>;
 
   /**
    * 文档窗口接口
@@ -50,9 +66,9 @@ export type DocumentMethods = {
 /**
  * 传统文档目录大纲项接口
  */
-export type DocumentOutline = EditorOutline<{
+export type DocumentOutline = Omit<EditorOutline<{
   text: string;
-}>;
+}>, 'setVisible'>;
 
 /**
  * 传统文档目录大纲项信息，用于描述传统文档中的目录项信息。
@@ -70,7 +86,7 @@ export interface DocumentEditor {
   readonly zoom: DocumentZoom;
   readonly TOCs: DocumentTOCs;
   readonly outline: DocumentOutline;
-  readonly window: DocumentWindow
+  readonly window: DocumentWindow;
 }
 
 export type DocumentSelection = {
@@ -196,14 +212,6 @@ export interface DocumentRangeBounding {
    * 最后一行的结束 X 坐标，
    */
   end: number;
-}
-
-/**
- * 可用于描述一个文档区域的信息。
- */
-export interface DocumentRangeValue {
-  start: string;
-  end: string;
 }
 
 /**
@@ -358,26 +366,22 @@ export interface DocumentTocContentItem {
   };
 }
 
-export type DocumentMenuOptions = EditorMenuOptions<DocumentMenuFeatureButtonName>;
-
-/**
- * 传统文档工具栏内置功能按钮
- */
-export type DocumentMenuFeatureButtonName = 'undo' | 'redo' | 'cut' | 'copy' | 'paste' | 'selectAll';
-
-/**
- * 传统文档工具栏一级菜单
- */
-export type DocumentMenuEntryConfig = EditorMenuEntryConfig<DocumentMenuFeatureButtonName>;
-
-/**
- * 传统文档工具栏功能按钮
- */
-export type DocumentMenuFeatureButtonConfig = EditorMenuFeatureButtonConfig<DocumentMenuFeatureButtonName>;
-
 export interface DocumentSDKOptions {
   /**
-   * 菜单栏相关设置
+   * menu settings
    */
-  menu?: DocumentMenuOptions;
+  menu?: {
+    hidden?: boolean;
+    disabled?: boolean;
+    custom?: DocxMenuOptions['custom'];
+    features?: DocxMenuOptions['features'];
+  };
+  /**
+   * toolbar settings
+   */
+  toolbar?: {
+    disabled?: boolean;
+    hidden?: boolean;
+    features?: DocxToolbarOptions['features'];
+  };
 }

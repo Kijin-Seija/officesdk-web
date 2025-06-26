@@ -1,12 +1,35 @@
 import type { EditorContent } from './editor';
-import type { EditorMenuOptions, EditorMenuFeatureButtonConfig, EditorMenuEntryConfig } from '../shared';
+
+import type {
+  SheetToolbarOptions,
+  SheetMenuOptions,
+  SheetMenuEntryConfig,
+  SheetToolbarFeatureButtonName,
+  SheetMenuFeatureButtonName,
+} from '@officesdk/editor-sdk-core/combine';
+
+export type SpreadsheetMenuOptions = SheetMenuOptions
+export type SpreadsheetToolbarOptions = SheetToolbarOptions
+export type SpreadsheetMenuEntryConfig = SheetMenuEntryConfig
+export type SpreadsheetToolbarFeatureButtonName = SheetToolbarFeatureButtonName
+export type SpreadsheetMenuFeatureButtonName = SheetMenuFeatureButtonName
+
+export type SpreadsheetExportType = 'image' | 'pdf' | 'xlsx'
+
 /**
  * Spreadsheet 远程调用的方法定义，
  * 作为契约，用于统一约束客户端和服务端的接口。
  * 这里只有类型定义，不包含任何实现。
  */
 export type SpreadsheetMethods = {
+  /**
+   * Interface to check if the SDK is ready
+   */
   ready: () => Promise<void>;
+  /**
+   * Interface to export file
+   */
+  export: (type: SpreadsheetExportType) => Promise<void>
   /**
    * 获取工作簿接口
    */
@@ -37,6 +60,7 @@ export type SpreadsheetMethods = {
  * 电子表格编辑器实例接口
  */
 export interface SpreadsheetEditor {
+  readonly export: (type: SpreadsheetExportType) => Promise<void>
   readonly ready: () => Promise<void>;
   readonly workbook: SpreadsheetWorkbook;
   readonly activeSheet: SpreadsheetWorksheet;
@@ -344,27 +368,23 @@ export type SpreadsheetSelection = {
   setRange: (value: SpreadsheetRangeValue | null) => void;
 };
 
-/**
- * 幻灯片工具栏内置功能按钮
- */
-export type SpreadsheetMenuFeatureButtonName = 'undo' | 'redo' | 'cut' | 'copy' | 'paste' | 'selectAll';
-
-/**
- * 幻灯片工具栏一级菜单
- */
-export type SpreadsheetMenuEntryConfig = EditorMenuEntryConfig<SpreadsheetMenuFeatureButtonName>;
-
-/**
- * 幻灯片工具栏功能按钮
- */
-export type SpreadsheetMenuFeatureButtonConfig = EditorMenuFeatureButtonConfig<SpreadsheetMenuFeatureButtonName>;
-
 export interface SpreadsheetSDKOptions {
   // TODO:
   /**
-     * 菜单栏相关设置
-     */
-    menu?: SpreadsheetMenuOptions;
+   * 菜单栏相关设置
+   */
+  menu?: {
+    disabled?: boolean;
+    hidden?: boolean;
+    custom?: SpreadsheetMenuOptions['custom'];
+    features?: SpreadsheetMenuOptions['features'];
+  };
+  /**
+   * Toolbar related settings
+   */
+  toolbar?: {
+    disabled?: boolean;
+    hidden?: boolean;
+    features?: SheetToolbarOptions['features'];
+  };
 }
-
-export type SpreadsheetMenuOptions = EditorMenuOptions<SpreadsheetMenuFeatureButtonName>;

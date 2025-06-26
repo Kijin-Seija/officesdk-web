@@ -1,7 +1,12 @@
 import type { RPCServerProxy } from '@officesdk/rpc';
 
 import type { EditorContext } from '../editor';
-import type { PresentationMethods, PresentationEditor, PresentationSDKOptions } from '../../shared';
+import type {
+  PresentationMethods,
+  PresentationEditor,
+  PresentationSDKOptions,
+  PresentationExportType,
+} from '../../shared';
 import { createEditorContentProxy } from '../editor/content';
 import { createPresentationZoomProxy } from './zoom';
 import { createPresentationSelectionProxy } from './selection';
@@ -26,8 +31,11 @@ export function createPresentationProxy(
     console.log('context', context);
 
     return {
-      ready: async ():Promise<void> => {
-         return editor.ready();
+      ready: async (): Promise<void> => {
+        return editor.ready();
+      },
+      export: async (type: PresentationExportType): Promise<void> => {
+        return editor.export(type);
       },
       /**
        * 获取选区接口

@@ -1,6 +1,6 @@
 import type { RPCClientProxy } from '@officesdk/rpc';
 
-import type { SpreadsheetMethods } from '../../shared';
+import type { SpreadsheetExportType, SpreadsheetMethods } from '../../shared';
 
 export function createSpreadsheetProxy(): RPCClientProxy<SpreadsheetMethods> {
   return (context) => {
@@ -9,6 +9,9 @@ export function createSpreadsheetProxy(): RPCClientProxy<SpreadsheetMethods> {
     return {
       ready: async () => {
         return invoke('ready', []);
+      },
+      export: async (type: SpreadsheetExportType) => {
+        return invoke('export', [type]);
       },
       getWorkbook: async () => {
         return invoke('getWorkbook', []);

@@ -5,16 +5,13 @@ export type {
   EditorContent,
   EditorContentRecord,
   EditorContentMethods,
-  EditorOutline,
-  EditorOutlineItem,
   EditorOutlineMethods,
   EditorMenuCustomButton,
   EditorMenuEntryButton,
-  EditorMenuEntryConfig,
   EditorMenuFeatureButton,
   EditorMenuFeatureButtonConfig,
-  EditorMenuOptions,
 } from './editor';
+
 export type {
   DocumentMethods,
   DocumentEditor,
@@ -29,16 +26,14 @@ export type {
   DocumentOutline,
   DocumentOutlineItem,
   DocumentMenuEntryConfig,
-  DocumentMenuFeatureButtonConfig,
   DocumentMenuFeatureButtonName,
   DocumentMenuOptions,
+  DocumentToolbarFeatureButtonName,
   DocumentSDKOptions,
+  DocumentWindowScrollParams,
+  DocumentWindow,
+  DocumentWindowScrollIntoViewOptions
 } from './document';
-
-export type {
-  DocxWindowScrollParams as DocumentWindowScrollParams,
-  DocxWindow as DocumentWindow,
-} from '@officesdk/editor-sdk-core';
 
 export type {
   DatabaseTableMethods,
@@ -61,11 +56,11 @@ export type {
   PresentationSlide,
   PresentationSlides,
   PresentationSDKOptions,
-  PresentationMenuFeatureButtonName,
-  PresentationMenuEntryConfig,
-  PresentationMenuFeatureButtonConfig,
-  PresentationMenuOptions,
 } from './presentation';
+
+
+export { PresentationExportType } from './presentation';
+
 export type {
   SpreadsheetMethods,
   SpreadsheetEditor,
@@ -78,10 +73,12 @@ export type {
   SpreadsheetSelection,
   SpreadsheetWorksheet,
   SpreadsheetSDKOptions,
-  SpreadsheetMenuFeatureButtonName,
   SpreadsheetMenuEntryConfig,
-  SpreadsheetMenuFeatureButtonConfig,
   SpreadsheetMenuOptions,
+  SpreadsheetToolbarOptions,
+  SpreadsheetToolbarFeatureButtonName,
+  SpreadsheetMenuFeatureButtonName,
+  SpreadsheetExportType
 } from './spreadsheet';
 export type {
   PdfMethods,

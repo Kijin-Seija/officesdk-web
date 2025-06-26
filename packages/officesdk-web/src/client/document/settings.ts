@@ -1,21 +1,30 @@
-import type { DocumentSDKOptions, EditorMenuCustomButton } from '../../shared';
+import type { DocxMenuOptions, DocxToolbarOptions } from '@officesdk/editor-sdk-core/combine';
+import type { DocumentSDKOptions } from '../../shared';
 
 export interface DocumentSettings {
   /**
-   * 自定义菜单
+   * menu settings
    */
   menu?: {
-    custom?: EditorMenuCustomButton[];
+    disabled?: boolean
+    hidden?: boolean
+    custom?: DocxMenuOptions['custom'];
+    features?: DocxMenuOptions['features'];
   };
+  /**
+   * toolbar settings
+   */
+  toolbar?:{
+    disabled?: boolean
+    hidden?: boolean
+    features?: DocxToolbarOptions['features']
+  }
+  
 }
 
 export function createDocumentOptions(settings?: DocumentSettings): DocumentSDKOptions | null {
-  // 如果没有有效的初始化设置，直接返回 null
-  if (!settings?.menu?.custom?.length) {
-    return null;
-  }
-
   return {
-    menu: settings.menu,
+    menu: settings?.menu,
+    toolbar: settings?.toolbar
   };
 }

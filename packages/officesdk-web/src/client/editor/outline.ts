@@ -1,13 +1,13 @@
 import type { RPCReturnMethods, RPCReturnMapProxy } from '@officesdk/rpc';
-
-import type { EditorOutlineMethods, EditorOutline, EditorOutlineItem } from '../../shared';
+import type {EditorOutlineItem, EditorOutline} from "@officesdk/editor-sdk-core/combine"
+import type { EditorOutlineMethods } from '../../shared';
 
 export function createOutlineFacade<Content>(
   methods: RPCReturnMethods<EditorOutlineMethods<Content>>,
-): RPCReturnMapProxy<EditorOutline<Content>> {
-  let outlineCache: Promise<RPCReturnMapProxy<EditorOutline<Content>>> | null = null;
+): RPCReturnMapProxy<Omit<EditorOutline<Content>, 'setVisible'>> {
+  let outlineCache: Promise<RPCReturnMapProxy<Omit<EditorOutline<Content>, 'setVisible'>>> | null = null;
 
-  const getOutline = async (): Promise<RPCReturnMapProxy<EditorOutline<Content>>> => {
+  const getOutline = async (): Promise<RPCReturnMapProxy<Omit<EditorOutline<Content>, 'setVisible'>>> => {
     if (outlineCache) {
       return outlineCache;
     }

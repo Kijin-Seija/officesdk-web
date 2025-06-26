@@ -1,21 +1,30 @@
-import type { PresentationSDKOptions, EditorMenuCustomButton } from '../../shared';
+import type { PresentationSDKOptions } from '../../shared';
+import type { PresentationMenuOptions, PresentationToolbarFeatureButtonConfig } from '@officesdk/editor-sdk-core/combine'
 
 export interface PresentationSettings {
   /**
    * 自定义菜单
    */
   menu?: {
-    custom?: EditorMenuCustomButton[];
+    disabled?: boolean
+    hidden?: boolean
+    custom?: PresentationMenuOptions['custom'];
+    features?: PresentationMenuOptions['features']
   };
+  /**
+   * Toolbar related settings
+   */
+  toolbar?: {
+    disabled?: boolean
+    hidden?: boolean
+    features?: PresentationToolbarFeatureButtonConfig
+  }
 }
 
 export function createPresentationOptions(settings?: PresentationSettings): PresentationSDKOptions | null {
-  // 如果没有有效的初始化设置，直接返回 null
-  if (!settings?.menu?.custom?.length) {
-    return null;
-  }
 
   return {
-    menu: settings.menu,
+    menu: settings?.menu,
+    toolbar: settings?.toolbar
   };
 }

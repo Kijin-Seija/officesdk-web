@@ -1,6 +1,11 @@
 import type { EditorContent } from './editor';
-import type { EditorMenuOptions, EditorMenuFeatureButtonConfig, EditorMenuEntryConfig } from '../shared';
+import type { PresentationMenuOptions, PresentationToolbarOptions } from '@officesdk/editor-sdk-core/combine';
 
+export enum PresentationExportType {
+  Pptx = 'pptx',
+  ImagePdf = 'imagePdf',
+  Image = 'image',
+}
 
 /**
  * Presentation 远程调用的方法定义，
@@ -8,7 +13,14 @@ import type { EditorMenuOptions, EditorMenuFeatureButtonConfig, EditorMenuEntryC
  * 这里只有类型定义，不包含任何实现。
  */
 export type PresentationMethods = {
+  /**
+   * Interface to check if the SDK is ready
+   */
   ready: () => Promise<void>;
+  /**
+   * Interface to export file
+   */
+  export: (type: PresentationExportType) => Promise<void>;
   /**
    * 获取选区接口
    */
@@ -35,6 +47,7 @@ export type PresentationMethods = {
  */
 export interface PresentationEditor {
   readonly ready: () => Promise<void>;
+  readonly export: (type: PresentationExportType) => Promise<void>;
   readonly selection: PresentationSelection;
   readonly zoom: PresentationZoom;
   readonly slides: PresentationSlides;
@@ -256,28 +269,22 @@ export interface PresentationSlides {
    */
   setSelectedSlides: (ids: string[]) => void;
 }
-
-
-/**
- * 幻灯片工具栏内置功能按钮
- */
-export type PresentationMenuFeatureButtonName = 'undo' | 'redo' | 'cut' | 'copy' | 'paste' | 'selectAll';
-
-/**
- * 幻灯片工具栏一级菜单
- */
-export type PresentationMenuEntryConfig = EditorMenuEntryConfig<PresentationMenuFeatureButtonName>;
-
-/**
- * 幻灯片工具栏功能按钮
- */
-export type PresentationMenuFeatureButtonConfig = EditorMenuFeatureButtonConfig<PresentationMenuFeatureButtonName>;
-
 export interface PresentationSDKOptions {
   /**
-     * 菜单栏相关设置
-     */
-    menu?: PresentationMenuOptions;
+   * 自定义菜单
+   */
+  menu?: {
+    disabled?: boolean;
+    hidden?: boolean;
+    custom?: PresentationMenuOptions['custom'];
+    features?: PresentationMenuOptions['features'];
+  };
+  /**
+   * 工具栏设置
+   */
+  toolbar?: {
+    disabled?: boolean;
+    hidden?: boolean;
+    features?: PresentationToolbarOptions['features'];
+  };
 }
-
-export type PresentationMenuOptions = EditorMenuOptions<PresentationMenuFeatureButtonName>;

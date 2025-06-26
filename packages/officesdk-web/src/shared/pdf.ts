@@ -1,5 +1,4 @@
-import type { EditorOutline, EditorOutlineItem } from './editor';
-
+import type { EditorOutlineItem, EditorOutline } from '@officesdk/editor-sdk-core/combine'
 /**
  * Pdf 远程调用的方法定义，
  * 作为契约，用于统一约束客户端和服务端的接口。
@@ -25,9 +24,9 @@ export type PdfMethods = {
 /**
  * PDF 编辑器目录项接口，用于访问 pdf 文件中目录信息。
  */
-export type PdfOutline = EditorOutline<{
+export type PdfOutline = Omit<EditorOutline<{
   text: string;
-}>;
+}>, 'setVisible'>;
 
 /**
  * PDF 编辑器目录项信息，用于描述 PDF 编辑器中的目录项信息。

@@ -1,6 +1,6 @@
 import type { RPCServerProxy } from '@officesdk/rpc';
 
-import type { SpreadsheetMethods, SpreadsheetEditor, SpreadsheetSDKOptions } from '../../shared';
+import type { SpreadsheetMethods, SpreadsheetEditor, SpreadsheetSDKOptions, SpreadsheetExportType } from '../../shared';
 import type { EditorContext } from '../editor';
 import { createSpreadsheetWorkbookProxy } from './workbook';
 import { createSpreadsheetWorksheetProxy } from './worksheet';
@@ -29,6 +29,9 @@ export function createSpreadsheetProxy(
     return {
       ready: async (): Promise<void> => {
         return editor.ready();
+      },
+      export: async(type: SpreadsheetExportType): Promise<void> => {
+        return editor.export(type)
       },
       /**
        * 获取工作簿接口

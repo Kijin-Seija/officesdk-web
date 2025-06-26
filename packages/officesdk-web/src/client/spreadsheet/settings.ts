@@ -1,21 +1,29 @@
-import type { SpreadsheetSDKOptions, EditorMenuCustomButton } from '../../shared';
-
+import type { SpreadsheetSDKOptions } from '../../shared';
+import type { SheetMenuOptions as SpreadsheetMenuOptions, SheetToolbarOptions as SpreadsheetToolbarOptions} from '@officesdk/editor-sdk-core/combine';
+export type { SheetMenuOptions as SpreadsheetMenuOptions, SheetToolbarOptions as SpreadsheetToolbarOptions} from '@officesdk/editor-sdk-core/combine';
 export interface SpreadsheetSettings {
   /**
-   * 自定义菜单
+   * menu settings
    */
   menu?: {
-    custom?: EditorMenuCustomButton[];
+    disabled?: boolean
+    hidden?: boolean
+    custom?: SpreadsheetMenuOptions['custom'];
+    features?: SpreadsheetMenuOptions['features']
+  };
+  /**
+   * Toolbar related settings
+   */
+  toolbar?: {
+    disabled?: boolean
+    hidden?: boolean
+    features?: SpreadsheetToolbarOptions['features'];
   };
 }
 
 export function createSpreadsheetOptions(settings?: SpreadsheetSettings): SpreadsheetSDKOptions | null {
-  // 如果没有有效的初始化设置，直接返回 null
-  if (!settings?.menu?.custom?.length) {
-    return null;
-  }
-
   return {
-    menu: settings.menu,
+    menu: settings?.menu,
+    toolbar: settings?.toolbar,
   };
 }
