@@ -38,5 +38,8 @@ export function createDatabaseTableSelectionProxy(selection: DatabaseTableSelect
     selectMultipleColumns: (column: number, columnCount: number) => {
       return selection.selectMultipleColumns(column, columnCount);
     },
+    selectAll: () => {
+      return selection.selectAll();
+    },
   };
 }

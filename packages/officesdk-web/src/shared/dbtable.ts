@@ -212,6 +212,13 @@ export type DatabaseTableSelection = {
    * @param columnCount - Number of columns to select
    */
   selectMultipleColumns: (column: number, columnCount: number) => void;
+
+  /**
+   /**
+   * Selects all cells
+   * 
+   */
+  selectAll: () => void;
 };
 
 /**
