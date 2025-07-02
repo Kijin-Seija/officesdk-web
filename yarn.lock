@@ -1673,10 +1673,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@officesdk/editor-sdk-core@npm:^0.0.0-20":
-  version: 0.0.0-20
-  resolution: "@officesdk/editor-sdk-core@npm:0.0.0-20"
-  checksum: 7595a6278360198cd732881d0c76978cf9714c9ca7a3b8ae13f4c2b2e39c9bfb31091c319b71d440663a665b58999c9f716906fc14211a624348cc41416c0c7a
+"@officesdk/editor-sdk-core@npm:^0.0.0-22":
+  version: 0.0.0-22
+  resolution: "@officesdk/editor-sdk-core@npm:0.0.0-22"
+  checksum: 75657cfab2b1b4f454e0eaae63f8cb7fcc3bcef12f510c2f33bcd7e983cbfff0e5e54a655c7d9b79421846419b520af531f0ad5c809924163d4e897d0cc02eab
   languageName: node
   linkType: hard
 
@@ -1692,7 +1692,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@officesdk/web@workspace:packages/officesdk-web"
   dependencies:
-    "@officesdk/editor-sdk-core": ^0.0.0-20
+    "@officesdk/editor-sdk-core": ^0.0.0-22
     "@officesdk/rpc": "workspace:*"
   languageName: unknown
   linkType: soft

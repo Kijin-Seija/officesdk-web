@@ -32,7 +32,7 @@ export type {
   DocumentSDKOptions,
   DocumentWindowScrollParams,
   DocumentWindow,
-  DocumentWindowScrollIntoViewOptions
+  DocumentWindowScrollIntoViewOptions,
 } from './document';
 
 export type {
@@ -43,6 +43,15 @@ export type {
   DatabaseTableSheet,
   DatabaseTableSelectionType,
   DatabaseTableSelectionValue,
+  DatabaseTableFieldContextMenuFeatureButtonName,
+  DatabaseTableListBarButtonName,
+  DatabaseTableListBarCustomButtonConfig,
+  DatabaseTableToolbarFeatureButtonName,
+  DatabaseTableViewContextMenuFeatureButtonName,
+  DatabaseTableFieldContextMenuOptions,
+  DatabaseTableViewContextMenuOptions,
+  DatabaseTableToolbarOptions,
+  DatabaseTableListBarOptions,
 } from './dbtable';
 export type { LiteDocMethods, LiteDocEditor, LiteDocSDKOptions } from './ltdoc';
 export type {
@@ -57,7 +66,6 @@ export type {
   PresentationSlides,
   PresentationSDKOptions,
 } from './presentation';
-
 
 export { PresentationExportType } from './presentation';
 
@@ -78,7 +86,7 @@ export type {
   SpreadsheetToolbarOptions,
   SpreadsheetToolbarFeatureButtonName,
   SpreadsheetMenuFeatureButtonName,
-  SpreadsheetExportType
+  SpreadsheetExportType,
 } from './spreadsheet';
 export type {
   PdfMethods,

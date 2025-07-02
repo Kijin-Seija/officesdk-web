@@ -25,7 +25,7 @@ export type { createContentFacade } from './editor/content';
 export { FileType } from '../shared/file';
 
 export type { LTDocFacade } from './ltdoc';
-export type { DatabaseTableFacade } from './dbtable';
+export type { DatabaseTableFacade, DatabaseTableSettings } from './dbtable';
 
 // 文档
 export type { DocumentFacade, DocumentSettings, DocxMenuOptions, DocxToolbarOptions } from './document';
@@ -38,4 +38,3 @@ export type { PresentationFacade, PresentationSettings } from './presentation';
 
 // PDF
 export type { PdfFacade } from './pdf';
-
