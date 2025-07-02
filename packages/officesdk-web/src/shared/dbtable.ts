@@ -1,4 +1,25 @@
 import type { EditorContent } from './editor';
+import type {
+  TableToolbarOptions,
+  TableListBarOptions,
+  TableFieldContextMenuOptions,
+  TableViewContextMenuOptions,
+  TableFieldContextMenuFeatureButtonName,
+  TableListBarButtonName,
+  TableListBarCustomButtonConfig,
+  TableToolbarFeatureButtonName,
+  TableViewContextMenuFeatureButtonName,
+} from '@officesdk/editor-sdk-core/combine';
+
+export type DatabaseTableFieldContextMenuOptions = TableFieldContextMenuOptions;
+export type DatabaseTableViewContextMenuOptions = TableViewContextMenuOptions;
+export type DatabaseTableToolbarOptions = TableToolbarOptions;
+export type DatabaseTableListBarOptions = TableListBarOptions;
+export type DatabaseTableFieldContextMenuFeatureButtonName = TableFieldContextMenuFeatureButtonName;
+export type DatabaseTableListBarButtonName = TableListBarButtonName;
+export type DatabaseTableListBarCustomButtonConfig = TableListBarCustomButtonConfig;
+export type DatabaseTableToolbarFeatureButtonName = TableToolbarFeatureButtonName;
+export type DatabaseTableViewContextMenuFeatureButtonName = TableViewContextMenuFeatureButtonName;
 
 export type DatabaseTableMethods = {
   /**
@@ -236,15 +257,39 @@ export interface DatabaseTableEditor {
   readonly selection: DatabaseTableSelection;
 
   /**
-   * Saves all pending changes to the database table
+   * Related content changes
    */
-  saveChanges: () => Promise<void>;
+  readonly content: EditorContent;
 }
 
 /**
  * Configuration options for the database table SDK
  */
-export interface DatabaseTableSDKOptions {}
+export interface DatabaseTableSDKOptions {
+  /**
+   * Options for customizing the field context menu in database table
+   * Controls the visibility, behavior and available actions in the context menu for table fields
+   */
+  fieldContextMenu?: TableFieldContextMenuOptions;
+
+  /**
+   * Options for customizing the view context menu in database table
+   * Controls the visibility, behavior and available actions in the view context menu
+   */
+  viewContextMenu?: TableViewContextMenuOptions;
+
+  /**
+   * Options for customizing the toolbar in database table
+   * Controls the visibility, behavior and available buttons in the main toolbar
+   */
+  toolbar?: TableToolbarOptions;
+
+  /**
+   * Options for customizing the list bar in database table
+   * Controls the visibility, behavior and available actions in the list bar
+   */
+  listBar?: TableListBarOptions;
+}
 
 /**
  * Represents a sheet in a database table

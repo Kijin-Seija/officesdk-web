@@ -3,8 +3,8 @@ import { create } from '@officesdk/rpc';
 import { FileType, assertFileType } from '../shared';
 import { createDocumentProxy, createDocumentFacade, createDocumentOptions } from './document';
 import type { DocumentFacade, DocumentSettings } from './document';
-import { createDatabaseTableProxy, createDatabaseTableFacade } from './dbtable';
-import type { DatabaseTableFacade } from './dbtable';
+import { createDatabaseTableProxy, createDatabaseTableFacade, createDatabaseTableOptions } from './dbtable';
+import type { DatabaseTableFacade, DatabaseTableSettings } from './dbtable';
 import { createLiteDocProxy, createLTDocFacade } from './ltdoc';
 import type { LTDocFacade } from './ltdoc';
 import { createPresentationProxy, createPresentationFacade, createPresentationOptions } from './presentation';
@@ -98,8 +98,7 @@ export interface PdfCreateOptions extends BaseCreateOptions {
 }
 export interface DBTableCreateOptions extends BaseCreateOptions {
   fileType: FileType.DBTable;
-  // TODO: To be completed
-  settings?: unknown;
+  settings?: DatabaseTableSettings;
 }
 export interface LiteDocCreateOptions extends BaseCreateOptions {
   fileType: FileType.LiteDoc;
@@ -242,6 +241,7 @@ export function createSDK(options: CreateOptions): UnifiedOfficeSDK {
   if (fileType === FileType.DBTable) {
     return createDatabaseTableSDK({
       fileType,
+      settings: settings,
       ...others,
     });
   }
@@ -405,6 +405,8 @@ function createPdfSDK(options: PdfCreateOptions): OfficePdfSDK {
 }
 
 function createDatabaseTableSDK(options: DBTableCreateOptions): OfficeDBTableSDK {
+  const { settings } = options;
+  const initOptions = createDatabaseTableOptions(settings);
   const { url, container } = connectIframe(options);
 
   return {
@@ -418,9 +420,8 @@ function createDatabaseTableSDK(options: DBTableCreateOptions): OfficeDBTableSDK
       const client = await create({
         remoteWindow,
         proxy: createDatabaseTableProxy(),
+        settings: initOptions,
       });
-
-      // await client.methods.ready();
 
       return createDatabaseTableFacade(client);
     },
