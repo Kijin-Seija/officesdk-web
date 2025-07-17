@@ -1,5 +1,5 @@
 export { createSDK, FileType } from './client';
-export { EditorModeType, EditorStandardRole } from './shared';
+export { EditorModeType, EditorStandardRole, DocumentExportType } from './shared';
 
 export type {
   CreateOptions,

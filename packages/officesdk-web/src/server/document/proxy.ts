@@ -1,6 +1,6 @@
 import type { RPCServerProxy } from '@officesdk/rpc';
 
-import type { DocumentMethods, DocumentEditor, DocumentSDKOptions } from '../../shared';
+import type { DocumentMethods, DocumentEditor, DocumentSDKOptions, DocumentExportType } from '../../shared';
 import type { EditorContext } from '../editor';
 import { createDocumentSelectionProxy } from './selection';
 import { createEditorContentProxy } from '../editor/content';
@@ -28,6 +28,9 @@ export function createDocumentProxy(
     return {
       ready: async (): Promise<void> => {
         return editor.ready();
+      },
+      export: async (type: DocumentExportType): Promise<void> => {
+        return editor.export(type);
       },
 
       getSelection: () => {

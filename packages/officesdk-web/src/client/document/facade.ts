@@ -2,7 +2,8 @@ import type { Client, RPCReturnMapProxy } from '@officesdk/rpc';
 import type { DocumentMethods, DocumentSelection, EditorContent, DocumentZoom,
   DocumentTOCs,
   DocumentOutline, 
-  DocumentWindow} from '../../shared';
+  DocumentWindow,
+  DocumentExportType} from '../../shared';
 import { createSelectionFacade } from './selection';
 import { createContentFacade } from '../editor/content';
 import { createZoomFacade } from './zoom';
@@ -11,6 +12,11 @@ import { createOutlineFacade } from '../editor/outline';
 import { createWindowFacade } from './window';
 
 export interface DocumentFacade {
+  /**
+   * 导出文档
+   */
+  readonly export: (type: DocumentExportType) => Promise<void>;
+
   /**
    * 选区实例
    */
@@ -52,6 +58,9 @@ export function createDocumentFacade(client: Client<DocumentMethods>): DocumentF
   const outline = createOutlineFacade<{ text: string }>(methods);
   const docxWindow = createWindowFacade(methods)
   return {
+    export: async (type: DocumentExportType) => {
+      return methods.export(type);
+    },
     get selection() {
       return selection;
     },

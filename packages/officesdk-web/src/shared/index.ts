@@ -35,6 +35,8 @@ export type {
   DocumentWindowScrollIntoViewOptions,
 } from './document';
 
+export { DocumentExportType } from './document';
+
 export type {
   DatabaseTableMethods,
   DatabaseTableEditor,

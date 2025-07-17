@@ -75,6 +75,6 @@ export type {
 
 } from '../shared';
 
-export { PresentationExportType } from '../shared';
+export { PresentationExportType, DocumentExportType } from '../shared';
 
 export { FileType } from '../shared';

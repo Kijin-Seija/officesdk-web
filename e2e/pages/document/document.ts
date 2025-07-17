@@ -2,6 +2,7 @@ import { testSDK } from './tests/sdk';
 import { testSelection } from './tests/selection';
 import { testZoom } from './tests/zoom';
 import { testContent } from './tests/content';
+import { testExport } from './tests/export';
 
 function main(): void {
   const root = document.getElementById('root');
@@ -11,6 +12,7 @@ function main(): void {
   }
 
   testSDK(root);
+  testExport(root);
   testSelection(root);
   testZoom(root);
   testContent(root);

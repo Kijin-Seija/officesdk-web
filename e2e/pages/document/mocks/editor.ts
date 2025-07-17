@@ -36,7 +36,10 @@ export function mockDocumentEditor(output: (message: string) => void): DocumentE
 
   return {
     async ready() {
-      return;
+      output('document.ready has been called');
+    },
+    async export(type) {
+      output(`document.export has been called with type: ${type}`);
     },
     selection: {
       getRange: () => {

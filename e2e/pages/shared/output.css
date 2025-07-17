@@ -9,6 +9,9 @@ body {
 .content,
 .frame {
   counter-reset: line-index;
+  height: fit-content;
+  max-height: 85px;
+  overflow-y: auto;
 }
 
 .output-line {

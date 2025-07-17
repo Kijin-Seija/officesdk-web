@@ -43,7 +43,7 @@ export function createRenderContent(
     contentElement.classList.add('content');
 
     if (height) {
-      contentElement.style.height = `${height}px`;
+      // contentElement.style.height = `${height}px`;
     }
 
     container.appendChild(contentElement);

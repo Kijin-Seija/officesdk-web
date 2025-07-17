@@ -12,6 +12,12 @@ import type {
 import type { EditorContent } from './editor';
 import type {EditorOutline, EditorOutlineItem} from '@officesdk/editor-sdk-core/combine'
 
+export enum DocumentExportType {
+  Docx = 'docx',
+  Pdf = 'pdf',
+  Image = 'image',
+}
+
 export type DocumentMenuOptions = DocxMenuOptions
 export type DocumentToolbarOptions = DocxToolbarOptions
 export type DocumentMenuEntryConfig = DocxMenuEntryConfig
@@ -30,6 +36,10 @@ export type DocumentWindowScrollIntoViewOptions = DocxWindowScrollIntoViewOption
 
 export type DocumentMethods = {
   ready: () => Promise<void>;
+  /**
+   * 导出文档接口
+   */
+  export: (type: DocumentExportType) => Promise<void>;
   /**
    * 获取选区接口
    */
@@ -82,6 +92,7 @@ export type DocumentOutlineItem = EditorOutlineItem<{
  */
 export interface DocumentEditor {
   readonly ready: () => Promise<void>;
+  readonly export: (type: DocumentExportType) => Promise<void>;
   readonly selection: DocumentSelection;
   readonly zoom: DocumentZoom;
   readonly TOCs: DocumentTOCs;
