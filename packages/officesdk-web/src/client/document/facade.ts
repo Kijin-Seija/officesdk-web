@@ -3,13 +3,16 @@ import type { DocumentMethods, DocumentSelection, EditorContent, DocumentZoom,
   DocumentTOCs,
   DocumentOutline, 
   DocumentWindow,
-  DocumentExportType} from '../../shared';
+  DocumentExportType,
+  DocumentParagraphs
+} from '../../shared';
 import { createSelectionFacade } from './selection';
 import { createContentFacade } from '../editor/content';
 import { createZoomFacade } from './zoom';
 import { createTOCsFacade } from './tocs';
 import { createOutlineFacade } from '../editor/outline';
 import { createWindowFacade } from './window';
+import { createParagraphsFacade } from './paragraphs';
 
 export interface DocumentFacade {
   /**
@@ -45,6 +48,12 @@ export interface DocumentFacade {
    * 窗口实例
    */
   readonly window: RPCReturnMapProxy<DocumentWindow>
+  /**
+   * 段落实例
+   */
+  readonly paragraphs: RPCReturnMapProxy<DocumentParagraphs>;
+
+
 
   // TODO: 初始化流程控制，初始化各类异常
 }
@@ -56,7 +65,9 @@ export function createDocumentFacade(client: Client<DocumentMethods>): DocumentF
   const zoom = createZoomFacade(methods);
   const TOCs = createTOCsFacade(methods);
   const outline = createOutlineFacade<{ text: string }>(methods);
-  const docxWindow = createWindowFacade(methods)
+  const docxWindow = createWindowFacade(methods);
+  const paragraphs = createParagraphsFacade(methods);
+  
   return {
     export: async (type: DocumentExportType) => {
       return methods.export(type);
@@ -78,6 +89,10 @@ export function createDocumentFacade(client: Client<DocumentMethods>): DocumentF
     },
     get window() {
       return docxWindow
+    },
+    get paragraphs() {
+      return paragraphs;
     }
+    
   };
 }

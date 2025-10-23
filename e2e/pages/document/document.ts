@@ -3,6 +3,7 @@ import { testSelection } from './tests/selection';
 import { testZoom } from './tests/zoom';
 import { testContent } from './tests/content';
 import { testExport } from './tests/export';
+import { testParagraphs } from './tests/paragraphs';
 
 function main(): void {
   const root = document.getElementById('root');
@@ -16,6 +17,7 @@ function main(): void {
   testSelection(root);
   testZoom(root);
   testContent(root);
+  testParagraphs(root);
 }
 
 main();

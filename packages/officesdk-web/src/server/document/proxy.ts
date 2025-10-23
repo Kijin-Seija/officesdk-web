@@ -8,6 +8,7 @@ import { createDocumentZoomProxy } from './zoom';
 import { createDocumentTOCsProxy } from './tocs';
 import { createDocumentOutlineProxy } from './outline';
 import { createDocumentWindowProxy } from './window';
+import { createDocumentParagraphsProxy } from './paragraphs';
 
 export type DocumentEditorFactory = (options: DocumentSDKOptions | null) => Promise<DocumentEditor>;
 
@@ -58,7 +59,11 @@ export function createDocumentProxy(
       },
       getWindow: () => {
         return createDocumentWindowProxy(editor.window)
+      },
+      getParagraphs: () => {
+        return createDocumentParagraphsProxy(editor.paragraphs);
       }
+      
     };
   };
 }
