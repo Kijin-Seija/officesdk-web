@@ -33,6 +33,7 @@ export type {
   DocumentWindowScrollParams,
   DocumentWindow,
   DocumentWindowScrollIntoViewOptions,
+  DocumentParagraphs,
 } from './document';
 
 export { DocumentExportType } from './document';

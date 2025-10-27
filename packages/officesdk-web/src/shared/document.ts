@@ -8,6 +8,7 @@ import type {
   DocxRangeValue,
   DocxWindow,
   DocxWindowScrollIntoViewOptions
+  DocxParagraphs
 } from '@officesdk/editor-sdk-core/combine';
 import type { EditorContent } from './editor';
 import type {EditorOutline, EditorOutlineItem} from '@officesdk/editor-sdk-core/combine'
@@ -27,6 +28,7 @@ export type DocumentWindowScrollParams = DocxWindowScrollParams
 export type DocumentRangeValue = DocxRangeValue
 export type DocumentWindow = DocxWindow
 export type DocumentWindowScrollIntoViewOptions = DocxWindowScrollIntoViewOptions
+export type DocumentParagraphs = DocxParagraphs
 
 /**
  * Document 远程调用的方法定义，
@@ -70,6 +72,10 @@ export type DocumentMethods = {
    * 文档窗口接口
    */
   getWindow: () => DocumentWindow;
+  /**
+   * 获取段落接口
+   */
+  getParagraphs: () => DocumentParagraphs;
   // TODO: 初始化流程控制，初始化各类异常
 };
 
@@ -98,6 +104,7 @@ export interface DocumentEditor {
   readonly TOCs: DocumentTOCs;
   readonly outline: DocumentOutline;
   readonly window: DocumentWindow;
+  readonly paragraphs: DocumentParagraphs;
 }
 
 export type DocumentSelection = {
